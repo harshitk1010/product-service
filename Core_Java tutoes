@@ -1,3 +1,46 @@
 CORE JAVA 
 
 =====
+CACHING..
+
+@Cacheable: Caches the result of a method based on its parameters.
+@CachePut: Updates the cache with the method’s result.
+@CacheEvict: Removes data from the cache.
+@Caching: Allows combining multiple caching annotations using a single method.
+
+@Service
+public class ProductService {
+
+    @Cacheable(value = "products", key = "#id")
+    public Product getProductById(Long id) {
+        // Simulate a slow database query
+        try {
+            Thread.sleep(3000); // Simulates a delay
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return new Product(id, "Sample Product");
+    }
+}
+
+In this example, the getProductById method is annotated with @Cacheable. The first time the method is called with a specific id, the result is stored in the cache. Subsequent calls with the same id retrieve the result from the cache instead of executing the method again.
+@CachePut(value = "products", key = "#product.id")
+public Product updateProduct(Product product) {
+    // Update product logic
+    return product;
+}
+@CacheEvict(value = "products", key = "#id")
+public void deleteProduct(Long id) {
+    // Delete product logic
+}
+@CacheEvict(value = "products", allEntries = true)
+public void clearCache() {
+    // Logic to clear cache
+}
+---
+Redis Server is Running at Some Address:
+Redis Accepts Multiple TCP Connections Through Clients: 
+Redis beautifully exploits the fact that network I/O is much time taking then Redis’s in-memory operations (which are atomic) and thus redis can provide high throughput, low latency and this apparent but performant concurrency.
+
+ low latency and high throughput observed in Redis caching--
+Cache Expiration: If using an external cache provider, configure cache expiration to avoid stale data. For example, in Redis, you can set TTL (Time-To-Live) for cache entries.
