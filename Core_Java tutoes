@@ -44,3 +44,81 @@ Redis beautifully exploits the fact that network I/O is much time taking then Re
 
  low latency and high throughput observed in Redis caching--
 Cache Expiration: If using an external cache provider, configure cache expiration to avoid stale data. For example, in Redis, you can set TTL (Time-To-Live) for cache entries.
+
+=============================
+SPRING TRANSACTION;
+https://medium.com/@alxkm/spring-transactions-best-practices-and-problems-ed2526777716
+Transactional management is crucial in any application, especially in Spring-based applications where it plays a pivotal role in ensuring data integrity and consistency.
+programmatic and declarative transaction management. Declarative management, using annotations like @Transactional, is generally preferred as it keeps the code cleaner and separates transaction management from business logic.
+
+@Service
+public class ProductService {
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Transactional
+    public void updateProductPrice(Long productId, double newPrice) {
+        Product product = productRepository.findById(productId);
+        if (product != null) {
+            product.setPrice(newPrice);
+            productRepository.save(product);
+        }
+    }
+}
+// updateProductPrice method is annotated with @Transactional, indicating that it should be executed within a transaction. Inside the method, we fetch a Product entity by its ID, update its price, and then save it back to the database. If any exception occurs during the execution of this method, the transaction will be rolled back, ensuring data consistency.
+
+@Transactional(rollbackFor = Exception.class)
+    public void updateProductPrice(Long productId, double newPrice) throws ProductNotFoundException {
+        Product product = productRepository.findById(productId);
+        if (product == null) {
+            throw new ProductNotFoundException("Product not found with ID: " + productId);
+        }
+        try {
+            product.setPrice(newPrice);
+            productRepository.save(product);
+        } catch (Exception e) {
+            // Log the exception or perform any necessary cleanup
+            // Rollback will occur for any exception due to rollbackFor = Exception.class
+            throw new ProductUpdateException("Failed to update product price", e);
+        }
+
+
+
+
+
+====================
+SPRING PAGINATION
+https://medium.com/@AlexanderObregon/paginating-api-results-with-spring-boot-and-spring-data-b00b5cddb41c
+
+
+
+
+
+
+
+
+
+
+===============
+KAFKA MULTILPE MICOSERVICE COMMUNICATION-
+
+
+
+
+
+
+
+
+DSA/JAVA8
+=============
+
+
+
+
+
+==============
+collection
+https://medium.com/@alxkm/choosing-the-right-collection-in-java-c59784fdc9c8
+
+
