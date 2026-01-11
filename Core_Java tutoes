@@ -45,7 +45,8 @@ Redis beautifully exploits the fact that network I/O is much time taking then Re
  low latency and high throughput observed in Redis caching--
 Cache Expiration: If using an external cache provider, configure cache expiration to avoid stale data. For example, in Redis, you can set TTL (Time-To-Live) for cache entries.
 
-=============================
+=======================================
+
 SPRING TRANSACTION;
 https://medium.com/@alxkm/spring-transactions-best-practices-and-problems-ed2526777716
 Transactional management is crucial in any application, especially in Spring-based applications where it plays a pivotal role in ensuring data integrity and consistency.
@@ -82,10 +83,13 @@ public class ProductService {
             // Rollback will occur for any exception due to rollbackFor = Exception.class
             throw new ProductUpdateException("Failed to update product price", e);
         }
-
-
-
-
+Spring-based applications maintain data integrity, scalability, and performance, even under heavy transactional loads..
+Ensuring atomicity, consistency, isolation, and durability (ACID properties) in distributed transactions
+Declarative Transaction Management: - @Transactional
+Choosing the Right Propagation Level: - optimizing performance and resource utilization.
+Handling Exceptions Appropriately:  - rollbackFor and noRollbackFor, ensures data consistency and graceful error recovery.
+Implementing Retry Logic for Optimistic Locking: - 
+Keeping Transactions Short and Simple: -
 
 ====================
 SPRING PAGINATION
