@@ -152,6 +152,30 @@ JVM Tools:
 Third-Party Monitoring Tools:
 Heap Dumps:
 Logging and Alerting:
+Monitoring Java memory usage in production environments is crucial for detecting memory leaks, optimizing performance, preventing OutOfMemoryErrors, troubleshooting performance issues, and ensuring the overall stability and reliability of Java applications.
+
+=======
+
+How Spring AOPWorks
+Configuration:
+
+XML-based Configuration: Define aspects and advice in Spring configuration files.
+Annotation-based Configuration: Use annotations like @Aspect, @Before, @After, @Around, etc., to define aspects and advice in the code.
+
+1. Logging
+AOP can be used to log method entry, exit, and exceptions across various layers of an application without cluttering the business logic with logging code.
+2. Transaction Management
+AOP can manage transactions declaratively, ensuring that business methods are executed within a transactional context without manually managing transaction boundaries.
+
+logging, security, and transaction management, by separating these concerns from the core business logic
+
+Before advice: Executed before a join point.
+After advice: Executed after a join point, regardless of its outcome.
+After returning advice: Executed after a join point completes normally.
+After throwing advice: Executed if a method exits by throwing an exception.
+Around advice: Executed around a join point, allowing to control the method execution and the result.
+
+============
 
 
 
