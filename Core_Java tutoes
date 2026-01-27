@@ -192,6 +192,8 @@ allFutures.thenRun(() -> {
     System.out.println(result1 + ", " + result2 + ", " + result3);
 });
 ====
+https://praveendandu24.medium.com/kubernetes-tutorial-for-beginners-mastering-the-basics-in-1-hour-332db7b5916b
+A Kubernetes Service is an abstraction that defines a stable endpoint to access a group of pods. It allows you to expose your application to other pods within the cluster or to external clients. Services provide load balancing and automatic scaling for the pods behind them, ensuring that the application remains highly available.
 kubernatics ingress..
 While the service enables internal communication between pods within the cluster, Kubernetes Ingress provides a way to expose your services to external clients outside the cluster. It acts as an external entry point to your applications and enables you to configure routing rules and load balancing for incoming traffic.
 Kubernetes Secrets are used to store sensitive information, such as passwords, API keys, or TLS certificates. Secrets are base64-encoded by default and can be mounted as files or used as environment variables in pods.
