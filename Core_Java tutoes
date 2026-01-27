@@ -192,5 +192,7 @@ allFutures.thenRun(() -> {
     System.out.println(result1 + ", " + result2 + ", " + result3);
 });
 ====
-
+kubernatics ingress..
+While the service enables internal communication between pods within the cluster, Kubernetes Ingress provides a way to expose your services to external clients outside the cluster. It acts as an external entry point to your applications and enables you to configure routing rules and load balancing for incoming traffic.
+Kubernetes Secrets are used to store sensitive information, such as passwords, API keys, or TLS certificates. Secrets are base64-encoded by default and can be mounted as files or used as environment variables in pods.
 
