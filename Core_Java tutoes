@@ -195,4 +195,10 @@ allFutures.thenRun(() -> {
 kubernatics ingress..
 While the service enables internal communication between pods within the cluster, Kubernetes Ingress provides a way to expose your services to external clients outside the cluster. It acts as an external entry point to your applications and enables you to configure routing rules and load balancing for incoming traffic.
 Kubernetes Secrets are used to store sensitive information, such as passwords, API keys, or TLS certificates. Secrets are base64-encoded by default and can be mounted as files or used as environment variables in pods.
+A Kubernetes Volume is a directory that is accessible to all containers in a pod. It decouples the storage from the containers, ensuring that data persists even if a container is restarted or rescheduled.
+
+In this example, we’ll use a PersistentVolumeClaim (PVC) to dynamically provision a PersistentVolume (PV) and attach it to our database container.
+A Kubernetes Deployment is a higher-level abstraction that manages a set of identical pods. It's ideal for stateless applications where individual pods are interchangeable. Deployments provide features like rolling updates, rollback, and scaling, making them suitable for web servers, APIs, and microservices.
+
+
 
