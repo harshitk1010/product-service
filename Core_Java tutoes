@@ -177,5 +177,20 @@ Around advice: Executed around a join point, allowing to control the method exec
 
 ============
 
+future vs completablefuture..
+CompletableFuture provides better exception handling than Future. With Future, you can only check if the computation completed successfully or not. If an exception occurs during the computation, you have to catch it explicitly. In contrast, with CompletableFuture, you can handle exceptions in a more declarative way using methods like exceptionally() and handle().
+One of the key differences between Future and CompletableFuture is that Future is a blocking API, whereas CompletableFuture is non-blocking. With a Future object, you must call the get() method to retrieve the result, but this method blocks until the result is available. In contrast, with a CompletableFuture object, you can use various non-blocking methods to retrieve the result, such as thenApply(), thenAccept(), or join().
+Future, it is difficult to chain multiple asynchronous operations together or to combine the results of multiple operations. CompletableFuture, on the other hand, provides methods such as thenCompose(), thenCombine(), and allOf() that make it easy to compose multiple asynchronous operations and to handle their results in a non-blocking way.
+With a Future object, there is no way to explicitly complete the future. Once you submit a task to an executor service and get a Future object in return, you can only wait for the task to complete. With CompletableFuture, you have more control over the completion of the future. You can complete it explicitly by calling complete(), completeExceptionally(), or cancel() methods.
+CompletableFuture<Void> allFutures = CompletableFuture.allOf(future1, future2, future3);
+
+allFutures.thenRun(() -> {
+    // All futures completed
+    String result1 = future1.join();
+    String result2 = future2.join();
+    String result3 = future3.join();
+    System.out.println(result1 + ", " + result2 + ", " + result3);
+});
+====
 
 
