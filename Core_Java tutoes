@@ -202,7 +202,30 @@ A Kubernetes Volume is a directory that is accessible to all containers in a pod
 In this example, we’ll use a PersistentVolumeClaim (PVC) to dynamically provision a PersistentVolume (PV) and attach it to our database container.
 A Kubernetes Deployment is a higher-level abstraction that manages a set of identical pods. It's ideal for stateless applications where individual pods are interchangeable. Deployments provide features like rolling updates, rollback, and scaling, making them suitable for web servers, APIs, and microservices.
 
+===
+https://suparnachowdhury.medium.com/mastering-sql-top-interview-questions-and-answers-abe12b6089f6
+sql
+WHERE is for filtering individual rows, while HAVING is for filtering groups of rows after they’ve been aggregated.
 
+SELECT * FROM customers 
+WHERE name LIKE 'A%'
+
+SELECT * FROM products 
+WHERE product_name LIKE '%phone%'
+
+self join
+in an Employees table with columns like employee_id, name, and manager_id (where manager_id refers to another employee_id), a self-join allows us to match each employee with their respective manager.
+-
+VARCHAR is more efficient for varying text lengths, while CHAR is better for fixed-length data.
+--Removing Duplicate Rows in MySQL Using ROW_NUMBER():
+--It requires the same number of columns with matching data types and order. UNION automatically removes duplicate rows, returning only distinct values from the combined tables.
+aggregate function - SUM, AVG, and COUNT.
+scalar function - Scalar functions  - UPPER, LOWER, and LEN.
+
+database transaction & ACID 
+maintaining data integrity and consistency in the database.
+
+==
 
 
 
