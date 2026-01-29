@@ -224,8 +224,62 @@ scalar function - Scalar functions  - UPPER, LOWER, and LEN.
 
 database transaction & ACID 
 maintaining data integrity and consistency in the database.
+======
+spring mvc
+interceptor and filter
+When to Use a Filter?
+Use Filters for general request/response modifications that apply to all HTTP requests, such as:
 
-==
+Logging: Track request and response details for debugging and monitoring.
+GZIP Compression: Reduce response size for faster data transfer.
+Character Encoding: Ensure proper text encoding (e.g., UTF-8) for consistency.
+Security Checks: Implement firewalls, rate limiting, and access control.
+Request/Response Modification: Alter HTTP data (e.g., wrapping, sanitization, caching).
+--
+If your task involves modifying raw HTTP requests (headers, encoding, compression) → Use a Filter.
+If you need to add logic before or after a controller executes → Use an Interceptor.
+---======
+filter..
+@Component
+public class LoggingFilter implements Filter {
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+        System.out.println("Request received: " + request.getRemoteAddr());
+        chain.doFilter(request, response);
+        System.out.println("Response sent.");
+    }
+}
+interceptor--
+@Component
+public class AuthInterceptor implements HandlerInterceptor {
+    @Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        System.out.println("Checking authentication...");
+        return true; // Continue to the controller
+    }
 
-
-
+    @Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
+        System.out.println("Controller executed.");
+    }
+}
+flow--
+Postman
+  ↓
+Servlet Container (Tomcat)
+  ↓
+Filter(s)
+  ↓
+DispatcherServlet
+  ↓
+Interceptor(s) - preHandle
+  ↓
+Controller
+  ↓
+Interceptor(s) - postHandle / afterCompletion
+  ↓
+Filter(s) (response phase)
+  ↓
+Postman
+===
