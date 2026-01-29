@@ -264,7 +264,9 @@ public class AuthInterceptor implements HandlerInterceptor {
         System.out.println("Controller executed.");
     }
 }
-flow--
+
+flow
+============
 Postman
   ↓
 Servlet Container (Tomcat)
@@ -282,4 +284,5 @@ Interceptor(s) - postHandle / afterCompletion
 Filter(s) (response phase)
   ↓
 Postman
-===
+==============
+
