@@ -96,15 +96,14 @@ Keeping Transactions Short and Simple: -
 SPRING PAGINATION
 https://medium.com/@AlexanderObregon/paginating-api-results-with-spring-boot-and-spring-data-b00b5cddb41c
 
-
-
-
-
-
-
-
-
-
+GET /items?page=2&size=25&sort=name,asc
+@GetMapping("/products")
+public PaginatedResponse<Product> getProducts(Pageable pageable) {
+    Page<Product> page = productRepository.findAll(pageable);
+    return buildPaginatedResponse(page);
+}
+page.hasNext() and page.hasPrevious() tell you if there are more pages ahead or behind.
+ The actual list of results comes from page.getContent(). The current page number is provided by page.getNumber(), and the total number of pages is available through page.getTotalPages(). You can get the full item count from page.getTotalElements(), and the page size that was requested through page.getSize()
 
 ===============
 KAFKA MULTILPE MICOSERVICE COMMUNICATION-
