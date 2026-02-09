@@ -326,8 +326,20 @@ class UserControllerTest {
     @MockBean
     UserService userService;
 }
-====
+======
+SQL question-
+third maximum salary-
 
+SELECT DISTINCT salary
+FROM employee
+ORDER BY salary DESC
+LIMIT 1 OFFSET 2;
+---
+WHERE	HAVING
+Filters rows	Filters groups
+Used before GROUP BY	Used after GROUP BY
+Cannot use aggregates	Can use aggregates
+------
 
 
 
