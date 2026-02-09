@@ -284,4 +284,50 @@ Filter(s) (response phase)
   ↓
 Postman
 ==============
+controller-
+
+@PostMapping("/upload")
+public ResponseEntity<String> uploadFile(
+        @RequestParam("file") MultipartFile file) throws IOException {
+
+------
+junit 5 annotataion
+@ExtendWith(MockitoExtension.class)
+
+@Mock, @InjectMocks
+
+@MockBean only for Spring context tests
+
+--
+@ExtendWith(MockitoExtension.class)
+class UserServiceCaptorTest {
+
+    @Mock
+    UserRepository userRepository;
+
+    @InjectMocks
+    UserService userService;
+
+    @Captor
+    ArgumentCaptor<User> userCaptor;
+
+    @Test
+    void createUser_capturesUser() {
+        UserDto dto = new UserDto("John", "john@mail.com");
+
+--
+integration tesst..
+@WebMvcTest(UserController.class)
+class UserControllerTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @MockBean
+    UserService userService;
+}
+====
+
+
+
 
