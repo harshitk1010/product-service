@@ -1,1 +1,27 @@
 
+Natural-Language Data Access (Most Value)
+
+Phase 2 — Read-Only GenAI Integration
+
+Connect GenAI to:
+
+Reltio Search API
+
+Entity History API
+
+Implement:
+
+Prompt templates
+
+Query validation
+
+Rate limits
+
+--
+MDM: Reltio
+
+GenAI: Azure OpenAI (most common)
+
+Integration: MuleSoft / Boomi / AWS Lambda
+
+UI: Web app, Teams, Slack, Salesforce
