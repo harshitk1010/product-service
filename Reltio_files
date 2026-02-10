@@ -25,3 +25,149 @@ GenAI: Azure OpenAI (most common)
 Integration: MuleSoft / Boomi / AWS Lambda
 
 UI: Web app, Teams, Slack, Salesforce
+
+=====
+Aspect	MatchToken	Comparator
+Purpose	Prepare data	Compare data
+Stage	Before comparison	During comparison
+Input	Raw attribute value	Tokenized values
+Output	Tokens	Similarity score
+Focus	Normalization	Accuracy
+Examples	LOWERCASE, PHONETIC, NGRAM	EXACT, FUZZY, JARO
+-----
+In Reltio, MatchToken prepares and standardizes attribute values for matching, while Comparator evaluates similarity between those prepared values to calculate a match score....
+==========
+Name Matching Rule
+
+MatchToken:
+
+Lowercase
+
+Remove punctuation
+
+Split words
+
+Comparator:
+
+Fuzzy / Jaro-Winkler
+
+Result:
+
+"Harshit Kumar" ≈ "H. Kumar"
+===============================
+“Integration Hub fits best in an event-driven MDM architecture, enabling scalable, loosely coupled integrations without impacting Reltio core performance.
+
+===
+survivorship rules
+
+
+
+Match and merge rule
+
+
+
+LCA configuration
+
+
+=====
+Why is MDM important?
+
+Answer:
+
+Eliminates duplicate & inconsistent data
+
+Improves data quality and governance
+
+Enables better analytics & decision-making
+
+Supports regulatory compliance
+===
+
+Rules that decide which attribute value wins when multiple source records are merged.
+
+Example:
+
+Source priority
+
+Most recent update
+
+Longest value
+=====
+What is Match & Merge?
+
+Answer:
+
+Match: Identify duplicate records
+
+Merge: Combine duplicates into a single golden record
+====
+What is Data Governance in MDM?
+
+Answer:
+Policies, roles, processes, and standards to ensure data accuracy, consistency, and ownership.
+
+====
+What are common Data Quality dimensions?
+
+Answer:
+
+Accuracy
+
+Completeness
+
+Consistency
+
+Timeliness
+
+Uniqueness
+==========
+What is inbound vs outbound integration?
+
+Answer:
+
+Inbound: Source → MDM
+
+Outbound: MDM → downstream systems
+=====
+What is the role of APIs in MDM?
+
+Answer:
+
+Create/update master data
+
+Search & retrieve golden records
+
+Real-time integrations
+===============
+new features with AI enhancement..
+🔹 AI-Driven Match & Merge (FERN)
+Earlier: Heavy dependency on complex match rules
+Now:
+AI learns matching patterns automatically
+Fewer false positives & less steward effort
+
+Faster onboarding of new data sources
+👉 Practical impact: Less time tuning match rules, more accurate Golden Records.
+--------
+🔹 AI-Assisted Stewardship (AgentFlow)
+Earlier: Manual duplicate resolution
+Now:
+AI suggests merge/split decisions
+Stewards validate instead of investigating
+👉 Practical impact: 30–40% reduction in stewardship workload.
+-------
+🔹 Unstructured Data Ingestion
+PDFs, documents, external files ingested via AI extraction
+👉 Practical impact:
+Supplier contracts, onboarding forms, KYC docs can enrich master data — not just structured feeds.
+-------
+🔹 Survivorship Improvements
+Smarter fallback logic
+Attribute-level defaulting
+👉 Practical impact:
+Golden Record remains stable even when high-priority sources go down.
+---------
+
+
+
+
