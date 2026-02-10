@@ -263,6 +263,510 @@ match and merge rule
 ====
 Reltio data can be exported using Export Service for bulk, APIs for real-time, Integration Hub for downstream systems, and Streaming for event-based consumption.
 
+======
+ALL RELTIO INTERVIEW EXPERIENCE:-
+=============================
+Ali Abdaal 
+Free: HubSpot Academy (Social Media), Later Blog
+Paid: Foundr’s Instagram Domination, Justin Welsh (LinkedIn), Ali Abdaal (YouTube)
+Tools: Canva, Buffer, Hootsuite
+
+
+Experience with Master Data Management principles and concepts
+• 3-5 years experience with Master Data Managements platforms, preferably Reltio
+• Expertise in configuring the Reltio Data Model, match & merge rules, survivorship rules, etc.
+• Proficient in working with Reltio APIs
+• Experience in managing Reference Data Management (RDM), User Management, UI Config,
+handling LCA and Workflow
+• Experience working with Reltio Integration Hub
+• Expertise in Loading/exporting data into/from Reltio and optmising the processes
+• Expertise in the design, data modelling creation, and management of large datasets/data
+models
+• Experience with ETL/File Movement services, preferably AWS
+
+• Experience in working in Agile - agile methodologies, coding standards, code reviews, source
+management (GITHUB), build processes
+• Defining best practices, developing and optimising technical standards, design principles,
+best practices, and frameworks
+• Ability to adapt quickly in a constantly changing environment
+• Technical curiosity and desire to innovate
+
+====
+
+
+* Proficiency in configuring: 
+* Data models (L3)
+* Match/Merge rules
+* Survivorship/OV rules
+* Relationships and crosswalks
+* Reference attributes and lookup types
+* Hands-on experience with Reltio APIs (REST, Streaming) and integration points.
+* Knowledge of JSON-based configuration files, tenant management, and release management.
+* Working knowledge of Reltio Console, Entity 360, and Data Loader tools.
+* Familiarity with data governance, data quality, and stewardship workflows.
+* Understanding of source-to-MDM and MDM-to-downstream data flows.
+* Strong skills in scripting or coding (Python, Shell) for data transformation are a plus.
+
+=========
+Reltio docs..question
+
+Architecture..
+RDM
+UI CONFIG
+LCA
+Lambda
+WORKFLOW
+ETL /FILE MOVEMEMNT SERVICE
+Reltio Integration Hub
+Reltio data model
+Match and merge rules
+Survivorship rule.
+Reltio api
+Master Data management principle and concept..
+AWS
+GitHub
+
+—————
+Interview Question:
+---------------------
+1.Survivorship
+
+2.MatchRule..
+
+
+1. Data profiling.
+
+1. Collect multiple data sources and associated metadata
+2. Cleanse data to eliminate duplicates, find anomalies, unify the structure, and discover interrelationships.
+3. Run statistical reports to uncover structural, content, and relationships information.
+Data profiling reports help to form the foundation of Data Quality Reporting.
+
+—
+
+2. Match field url
+
+Match rules in the Data Modeler determine how to merge two or more entities and then combine them to build a consolidated profile. Reltio creates unique URIs for each entity before merging them.
+* Match: Identifies and collects the occurrences of the same or similar entities.
+* Merge: Compares and applies rules to combine entities, when possible.
+* Survivorship: Enables certain entities to persist, even when there are similar entities.
+—
+* Match rules: Create entities, assign IDs, and then merge them using match rules in the Console Data Modeler (recommended method).Match rules in the Data Modeler determine how to merge two or more entities and then combine them to build a consolidated profile. Reltio creates unique URIs for each entity before merging them. This enables you to unmerge them later if necessary. For more information, see topic Configure match rules overview .
+* Add an Entity type API: Specify whether to match and merge on-the-fly when you create an entity using the matchBeforeCreate property. For more information, see topic Merge-on-the-fly.
+
+——
+
+3. If any possible to particular profile based survivour strategcy
+
+MaxValue Rule
+This rule selects the maximum value held in the attribute. The maximum value is defined as follows for different data types:
+* Numeric: MaxValue is the largest numeric value.
+* Date: MaxValue is the maximum timestamp value.
+* Boolean: True is the MaxValue
+* String: MaxValue is based on the lexicographical sort order of the strings.
+
+Fallback strategy chains use not only winner values but also winner crosswalks of those values. Therefore, if a value with multiple crosswalks becomes a winner on a calculation step with just a few winner crosswalks, only those winner crosswalks are used on the next calculation step.
+
+———
+
+4. how match rule config region based.
+
+
+Match Rule Editor
+Overview
+At times, it could be challenging to write match rules by using JSON.
+The Match Rules Editor feature within the Data Modeler allows you to create and modify basic match rules without having to depend on a skillset of writing JSON code and use of a JSON editor. The Rule Builder within the editor is intuitive and enables you to develop a match rule easily by selecting attributes, match rule comparison operators, comparator classes, and match token classes. The editor also offers the Advanced Editor where you can write JSON code, if needed, for more complex functionality.
+Benefits
+The Match Rule Editor offers the following key benefits:
+* Configure match rules with little or no knowledge of JSON configuration syntax.
+* Use the Analyzer tool to holistically analyze your rule set for redundancy and inefficiencies.
+* Dramatically reduce your match rule development time.
+Features
+* A Rules builder provides the framework for you to create a match rule using item selections rather than writing JSON code.
+* Supports use of And/And not/Or/Or not operators.
+* Supports the Reltio Name Dictionary to enable matching on synonyms of first names.
+* Supports ignoreInToken to suppress token generation for selected attributes.
+* The logical version of the rule you developed is displayed for review in compact form.
+* An Advanced Editor that synthesizes the JSON equivalent code block for the selections made within the Rules Builder, but allows you to add code for features of the match framework that are not yet supported by the Rules Builder.
+
+
+—————
+
+5. what is more than one and zero to more than one
+
+Survivorship rules can be configured via the Hub or via the Configuration API.
+
+https://docs.reltio.com/en/model/consolidate-data/design-survivorship-rules/survivorship-rules
+
+
+6. how to config clean function
+
+
+note: While working with the tenant configuration, ensure that you:
+* Use tenant configuration to declare custom cleanse functions and to specify per-tenant properties.
+* Use the POST /tenants and GET /tenants/tenantid requests to configure tenants. Cleanse functions use a separate API that is only available to the tenant admin.
+
+https://docs.reltio.com/en/model/cleanse-data/cleanse-and-standardize-data-overview/configuring-cleanse-functions/best-practices-for-data-profiling-and-cleanse
+
+7. cleans verification
+
+What's the difference between Cleaning Validation and Cleaning Verification? Validation is confirming that the most effective cleaning methods are instituted from the beginning. Verification is ensuring validated cleaning methods are being properly implemented.
+
+
+8. unresolved canonical 
+
+https://support.reltio.com/hc/en-us/articles/6584284635661-How-can-I-change-lookup-canonical-values-without-having-to-reload-profile-data
+
+
+9. how config true and false but that winning is based on false
+
+Fallback strategy chains use not only winner values but also winner crosswalks of those values. Therefore, if a value with multiple crosswalks becomes a winner on a calculation step with just a few winner crosswalks, only those winner crosswalks are used on the next calculation step.
+
+
+
+10. what are the steps for address cleanse
+Reltio platform automatically runs address cleansing for updated address values and returns verification status and codes. Values for "Address Line 1", "Address Line 2", "City", "State", "Country" and other attributes are only returned for verified addresses
+
+Yes, you can use the cleanse API from Reltio.  This is not a direct API to Loqate, it is an API from Reltio which inturn gives you the cleansed address. 
+
+If you are invoking it from other application,  it would still be counted against your API entitlements .
+
+
+
+11.how to config security in reltio
+
+
+Security can be set at an entity/relationship type level or for individual attributes.
+The Reltio Connected Data Platform platform supports role-based access control with its metadata security framework. Each role has a list of resources with operations that users assigned to the role can do on each resource. Security can be set at an entity/relationship type level or for individual attributes.
+
+
+12.what is data provider
+Data providers supply attribute values for an object and the attributes are associated with the crosswalk.
+Data may come to Reltio from multiple sources. Each source must be registered in Reltio, and all data loaded into a tenant will be associated with a data source. If no source is specified when creating an object, the source will default to "Reltio". Crosswalks do not just apply to the entity level, Reltio associates each supplied attribute with data provider crosswalks.
+A crosswalk can represent a data provider or a non-data provider:
+* Data providers supply attribute values for an object and the attributes are associated with the crosswalk.
+* Non-data providers are associated with an overall entity (or relationship). In this case it is simply used to link a Reltio object with an object in another system. Supplied attributes will NOT be associated with this crosswalk.
+
+
+13.how config surogate corsswalk…
+https://docs.reltio.com/en/model/construct-your-data-model/define-or-refine-your-data-model/define-crosswalks-for-data-sources/configuring-surrogate-keys
+
+If your source system (perhaps it is a simple file) doesn't provide a unique ID for an entity you wish to create, you can specify a source name for the crosswalk and ask Reltio to synthesize the crosswalk value. This is called a surrogate crosswalk.
+
+The concatenated, cleansed values of the Location entity are used to construct a surrogate key, for example, a combination of AddrLine1, AddrLine2, and City. Whenever a clean value of a Location entity, which is similar to a previously loaded Location entity, is loaded in Reltio, its surrogate key will be identical to the key of the previously loaded location entity.
+Assigning surrogate keys
+Reltio automatically cleanses and standardizes any location or address entity that is posted on the Reltio platform. A key can be explicitly assigned to the Location entity or Reltio can automatically generate it using the surrogate key function.
+To automatically assign a key to the Location entity, the option must be enabled for each source that provides address entities by specifying the value of the refEntity attribute as Surrogate in the incoming JSON. In this example, the sp ecified refEntity attribute value is Surrogate for the FB source.
+
+14.how to config source table
+
+The steps for analysing and data profiling of the new source are below:
+1. Conduct a mapping exercise to determine if the new data set maps into the existing configuration (If new attributes are required, that work will be done in the Configuration step below).
+2. Use any analysis tool to profile the data set to be loaded into Reltio.
+3. Identify any data quality issues with the data set.
+4. Decide with the client how to address any data quality identified (i.e. Resolve data quality issues in the source prior to loading the new data set into Reltio, or ensure enough data stewards are staffed to resolve suspect matches).
+5. Identify if there is a unique ID column (for ex. personID / orgID)  in source, which can be used as crosswalk ID. if none exists, identify if concatenation of columns can be used to create a unique  key.
+6. Determine if there is a need for configuring a lookupType (RDM) for the new source. Or if existing RDM lookups can be used, determine the values for the lookups.
+7. Determine if the introduction of new data will require additions or changes to the existing set of match rules.
+
+https://community.reltio.com/blogs/sara-lyons/2021/06/06/step-by-step-guide-adding-a-new-source-to-reltio
+
+15.what is master data , transactional data, reference data
+
+Master data provides a stable reference point for consistency and long-term analysis, while transactional data offers real-time insights and supports day-to-day operations. The combination of both ensures a comprehensive and flexible data strategy that can address various organisational needs.
+
+Reference Data is the data used to categorise, classify, or define other data elements. It provides context and meaning to master and transactional data. Examples of reference data include units of measure, currency codes, and country codes.
+
+16. what is data model
+
+Data modelling is the process of defining and diagramming a data model of a software or database system and clearly defining the attributes and flows of data…
+
+https://www.reltio.com/glossary/data-analytics/what-is-a-data-model/#:~:text=Data%20modeling%20is%20the%20process,business%20stakeholders%2C%20and%20end%20users.
+
+
+17.How new source connect to Reltio
+https://docs.reltio.com/en/model/transcode-reference-data/manage-lookups-using-rdm/working-with-source-systems/creating-a-source-system
+
+
+
+18. Survivorship Advanced concept…
+
+Advanced Survivorship Behaviour covers the last update date, some values, and same was recent crosswalk strategies.
+Reltio Survivorship is the process of deciding which value contributes to the golden record (OV) between the many potential values provided by the entity's crosswalks. Each attribute in reltio has a survivorship rule, if none is explicitly defined “Recency is used by default..
+
+
+Data cleaning 
+https://docs.reltio.com/en/model/cleanse-data/cleanse-and-standardize-data-overview
+
+MATCH RULE
+
+CLEANSER USED
+
+TYPE OF MATCH RULE
+RIH
+
+
+
+Scenario based questions idha lam 
+
+
+
+Match rule 
+https://docs.reltio.com/en/integrate/reltio-data-enrichment-integrations/reltio-enrichment-with-npi/match-rules
+
+
+Survivorship 
+https://docs.reltio.com/en/model/consolidate-data/design-survivorship-rules/survivorship-rules
+
+
+Fall back strategy 
+
+You can set a fallback strategy for survivorship rules. For example, if you have a source system survivorship rule for an attribute, and you have two records from the same source system involved in a merge, Reltio would generate two Operational Values (OVs) for the attribute…
+
+https://docs.reltio.com/en/explore/get-going-with-apis-and-rocs-utilities/reltio-rest-apis/engage-apis/configuration-api/configuring-fallback-strategies-for-survivorship-rules#:~:text=You%20can%20set%20a%20fallback,(OVs)%20for%20the%20attribute.
+
+
+Attributes  ..
+
+Reltio attribute types
+Reltio multi-domain MDM makes defining your data model simple and intuitive. We provide four attribute types to define attributes, relationships, and interactions for your entity types.
+* simple
+* nested
+* reference
+* analytic
+These attribute types enable you to:
+* Build a logical data model (rather than relying on physical tables and foreign keys)
+* Define entity, relationship, and interaction types granularly.
+* Provide detailed data to content and interaction designers.
+* Offer business users rich and streamlined, search and navigation experiences.
+
+
+
+Lca lambda 
+
+
+Dtss sfdc 
+
+Data Tenant Subscription Service, or DTSS, is a powerful and unique technology built into the Reltio Modern Data Management architecture. It enables the seamless sharing of data between Reltio tenants, without any external ETL or integration effort.
+
+—
+https://www.reltio.com/resources/reltio-connected-customer-data-for-salesforce/
+
+Rdm 
+
+https://docs.reltio.com/en/explore/get-your-bearings-in-reltio/get-your-bearings-in-reltio-multidomain-master-data-management/reference-data-management-rdm
+===================
+Unmapped values
+ans ; Whenever mdm creates a transcode problem, rdm creates an unmapped values 
+In the rdm once we open look up type values we can see unmapped values error…
+
+https://docs.reltio.com/en/model/transcode-reference-data/manage-lookups-using-rdm/working-with-lookup-types/mapping-unmapped-values
+
+
+=====
+
+Interview question-
+
+1.Sns vs sqs
+
+2.how entire application deployed and work
+
+3.how mockito work
+
+4.
+======
+Common Rules
+Survivorship calculation rules include:
+
+Survivorship strategy
+Filtering settings
+Fallback strategy settings
+Restrictions of sources for OV
+
+==========
+What types of triggers are supported in Reltio Integration Hub:-
+Event-based triggers (e.g., entity created or updated)
+Scheduled triggers (e.g., run every hour)
+Manual triggers (for testing)
+
+========
+
+Reltio interview questions:-
+===
+1.Type of survivorship rule
+2.type of match rule
+
+
+3.type of loading - manual / automate loading
+
+Manual Methods:
+* Reltio Console (UI Data Loader):
+    * Upload CSV files directly 
+    * Best for <10k records 
+* Postman / API Tools:
+    * Manually send POST/PUT requests to Reltio APIs 
+    * Good for testing or small updates 
+* Data Steward Actions:
+    * Add/edit individual records manually through the Reltio UI
+—
+Automated Methods:
+* Reltio Integration Hub (RIH):
+    * Drag-and-drop workflows (Boomi-based) 
+    * Prebuilt connectors (Salesforce, SAP, etc.) 
+* Reltio REST APIs:
+    * Entity creation (/entities), relationships, updates 
+    * Suitable for microservices or backend apps 
+* Bulk API:
+    * Asynchronous batch uploads for large data sets 
+    * Ideal for initial data load or nightly batches 
+—
+
+4.why we need Reltio only
+Reltio is a cloud-native, multi-tenant SaaS platform built for real-time MDM.
+Reltio offers advanced survivorship rules, matching algorithms (exact, fuzzy, AI/ML-based), and configurable workflows.
+Supports schema-less data modeling via L3 configuration
+
+When NOT to Use Reltio
+Situation	Consider Alternatives
+Very small dataset, no real-time needs	Lighter tools like Talend, Informatica Cloud
+Deeply integrated SAP-only environment	SAP MDG
+On-premise infrastructure only	Legacy MDM tools
+
+5.Why we need MDM 
+data is fragmented, duplicated, inconsistent, and siloed across multiple systems. MDM solves these problems by providing a single, trusted, consistent view of the most important business entities like customers, products, suppliers, employees, etc.
+MDM makes sure your business-critical data is accurate, unified, and useful — no matter where it comes from or where it goes.
+
+6.What is RDM and why we need it.
+
+1.Avoid Inconsistent Reference Values
+* Without RDM, different systems might use different values for the same thing. 
+2.Improve Data Quality
+* By enforcing valid values, RDM eliminates typos, invalid codes, and rogue entries. 
+3.RDM systems like Reltio RDM support draft → publish → deprecate workflows.
+
+
+7.what is difference between RDM tenant vs MDM tenant
+
+MDM Tenant = A system managing all the people in a university (students, faculty, staff).
+RDM Tenant = A lookup system that defines all valid departments, courses, countries, and statuses used by the university system.
+Match & Merge	✅ Yes – supports survivorship, match rules, merge	❌ No – no survivorship or merging needed
+Survivorship Rules	✅ Yes – heavily used for golden records	❌ Not applicable
+Relationships	✅ Yes – graph-based relationships supported	❌ No – flat lists only
+====
+
+1.Attribute type
+2.full override and partial override
+3.adding the new attribute
+4.match rule
+5.merge rules
+6.type of survivorship rule
+7. RIH
+8.  Data loads
+9. Workflow thing
+10. Metadata security 
+11. Control pack
+
+====
+ Data Model,
+
+ Match‑Merge, 
+
+Survivorship, and 
+
+Integration Hub configurations , 
+
+Snowflake
+======
+
+Interview Question:
+---------------------
+1. Data profiling.
+2. Match field url
+3. If any possible to particular profile based survivour stradegcy
+4. how match rule config region based.
+5. what is more than one and zero to more than one
+6. how to config clean function
+7. cleans verfication
+8. unresolve conanical 
+9. how config true and false but that winning is based on false
+10. what are the steps for address cleanse
+11.how to config security in reltio
+12.what is data provider
+13.how config surogate corsswalk
+14.how to config source table
+15.what is master data , transactional data, refereance data
+16. what is data model
+17.How new soruce connect to Reltio
+18. Survivourship Advanced concept
+Data cleaning 
+Scenario based questions idha lam 
+Match rule 
+Survivorship 
+Fall back strategy 
+Attributes  
+Lca lambda 
+Dtss sfdc 
+Rdm 
+Unmapped values
+Design and configure Reltio LDM and survivorship rules.
+Build data integrations using Reltio APIs and third-party tools.
+Collaborate with data stewards and analysts to ensure quality.
+Write technical documentation and provide post-deployment support.
+
+
+ans ; Whenever mdm creates a transcode problem, rdm creates an unmapped values 
+In the rdm once we open look up type values we can see unmapped values error
+
+=======
+
+
+Application for Reltio MDM Developer – Available for Onsite/Offshore
+
+
+=====
+
+Reltio supports survivorship rules and ML-driven data cleansing (e.g., choosing the most accurate name/email/phone from multiple sources).
+
+Reltio's low-code/no-code configuration and prebuilt connectors (Salesforce, SAP, Snowflake) help teams go live faster than with legacy MDM tools.
+
+
+
+
+A lookup is a data fetch operation within a recipe used to:
+* Query an external system or database 
+* Fetch values to enrich or validate data For example, a lookup to Snowflake to get customer region. 
+
+
+===
+Whatever u read  - you talk
+kHate  - body
+Discipline - confidence
+Focus - result
+Environment - growth
+Mindset - ghiaiate ho then what your action
+====
+MAIN FOUCS - DATA LOADING , MAPPPING  SURVIVIORS SHIPPS , MAATHCH RULLE..
+
+
+35438435
+aoS?f6B@VYP
+
+==
+www.linkedin.com/in/harshit-kumar-rajput-516b3b242
+
+======
+1.Import and export data from reltio
+2.configuration of match and merge rule. (Write configuration)
+3. Token vs concoctor class diff in match and merge rule
+4. Custom workflow how to create
+5. Size of file upload in relate
+6. How many way we can upload data
+7. Frequency and recency
+8. Reltio with AI/ML integration
+9.  Fuzzy and NOtNull
+10. Data load all scenario
+11. Data modelling
+=======
+
 
 
 
