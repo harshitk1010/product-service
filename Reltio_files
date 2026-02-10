@@ -167,6 +167,54 @@ Attribute-level defaulting
 👉 Practical impact:
 Golden Record remains stable even when high-priority sources go down.
 ---------
+🔹 Observability & Monitoring
+API usage
+Match performance
+Pipeline health
+👉 Practical impact:
+MDM teams can detect issues before business users complain.
+“Reltio’s recent enhancements reduce rule complexity, increase AI-driven automation, and make Golden Records directly consumable for analytics and GenAI use cases.”
+Reltio Entity Resolution applies AI and LLM-based models to match and merge records across disparate systems, creating a universal ID with high precision and speed.
+-------------
+1.Reltio AgentFlow™
+    Data Explorer: Explore entity profiles and relationships in read-only mode
+    Resolver: Analyze and resolve potential duplicates automatically with optional external enrichment
+    Work Assigner: Redistribute workflow tasks across active stewards to maintain balanced queues
+    Address Enricher: Validate and correct entity addresses using trusted external sources
+    Product Recommender: Suggest personalized products using customer profiles, interactions, and graph signals
+    Unmerger: Automatically audit and unmerge records that were incorrectly merged
+
+2.Reltio Integration for Veeva Vault CRM™
+enables a single, trusted view that improves engagement quality, speeds decisions, and reduces compliance risk without the cost and complexity of custom pipelines
+
+3.Reltio Data Sharing with Databricks
+Reltio Data Sharing with Databricks allows you to securely access AI-ready and trusted data from Reltio in near real time directly within Databricks, without moving or copying data. No traditional extract - load - transform (ELT) data pipeline steps required.
+
+4.Unstructured Data Studio
+    AI-powered extraction: Ingest individual file(s) from sources like Google Drive, or S3. Automatically extract relevant entities, so data stewards can focus on reviewing, not retyping.
+    Mapping to Reltio profiles: Extracted data is intelligently mapped to Reltio's data model.
+    Approval workflows: All changes are routed through configurable approval steps through workflows.
+    Document lineage: Source files can be stored and deep-linked within profiles when needed, supporting both regulatory and operational traceability.
+    Batch or real-time processing: Run document processing on a schedule or trigger it on demand.
+
+
+5.Address Auto Complete
+Address Auto Complete captures clean, standardized addresses at source. This API capability improves data quality at the point of entry by providing type-ahead address suggestions and returning complete, standardized addresses.
+
+6.Real time Email and Phone Verification
+Reltio real time Email and Phone Verification enables you to verify contacts as they are captured, or cleanse them in bulk before usage.
+
+7.FERN with modes
+FERN now supports multiple matching modes to give you greater control and precision when resolving your data. You can choose from three pre-configured modes — Enhanced Discovery, Data Steward, and Full Mode —
+
+8.Survivorship defaults and fallback handling
+Configurable default survivorship strategies - Set the default survivorship strategy at the tenant or object type level (entity or relationship). Object-level settings override tenant-level, with Last Updated Date (LUD) used as the fallback for backward compatibility.
+Dedicated fallback for zero values  - you can apply different fallback logic when no values are available versus when multiple values exist.
+Added optional ignoreCase: true parameter for Min, Max, Frequency, and Value-Based Priority strategies to treat case-variant values (e.g., "USA" vs "usa") as equal. Defaults to false for backward compatibility.
+
+====
+
+
 
 
 
