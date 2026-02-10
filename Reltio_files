@@ -217,6 +217,20 @@ Matchtoken vs Comparator class..
 
 comparator
 Exact, ExactOrNull, ExactOrAllNull, notExactSame, and Fuzzy
+--
+Match Token Class selects which records should be compared, while Comparator Class determines how similar the values are to decide a match.
+Email = john.smith@gmail.com
+Tokens → john, smith, gmail
+
+john.smith@gmail.com
+vs
+jon.smith@gmail.com
+→ High similarity → MATCH
+
+Match Token = “Who should I compare?”
+Comparator = “How similar are these two values?”
+
+=====
 
 
 
