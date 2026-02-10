@@ -1,4 +1,6 @@
 
+Reltio interview questions:-
+
 Natural-Language Data Access (Most Value)
 
 Phase 2 — Read-Only GenAI Integration
@@ -230,7 +232,43 @@ jon.smith@gmail.com
 Match Token = “Who should I compare?”
 Comparator = “How similar are these two values?”
 
-=====
+===========
+surviviorship rules
+strategy name 
+LUD  Last Update Date. Attributes that were recently updated (with the maximum number of update dates) will have highest priority to be marked as OV. LUD is the default survivorship strategy.
+
+SRC_SYS 	Source System. The user provides a priority list of sources. A list of priority is defined for a mapping, if it’s absent, it is taken from the priority list of the group. All crosswalks from a source system with the highest priority become winners
+
+Frequency Calculate amounts of crosswalks from which values were provided. Values with the most amount of crosswalks become winners.
+Aggregation All presented values become winners (ov = True).
+MinValue The smallest value becomes the winner. All crosswalks of those values become winners.
+MaxValue Values with the highest value become winners. All crosswalks of those values become winners.
+ValueBasedPriority - A user-defined priority list of attribute values determines the Operational Value (OV). The value with the highest priority becomes the winner. All crosswalks associated with this value are also marked as winners. 
+    lookupCode
+    lookupValue
+    lookupRawValue
+Fallback Strategies  -3 fallback crietria
+1.MORE_THAN_ONE
+2.ZERO_OR_MORE_THAN_ONE
+3.ZERO
+
+
+match and merge rule
+
+
+
+
+
+
+====
+Reltio data can be exported using Export Service for bulk, APIs for real-time, Integration Hub for downstream systems, and Streaming for event-based consumption.
+
+
+
+
+
+
+
 
 
 
