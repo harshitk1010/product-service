@@ -213,6 +213,10 @@ Added optional ignoreCase: true parameter for Min, Max, Frequency, and Value-Bas
 
 ====
 
+Matchtoken vs Comparator class..
+
+comparator
+Exact, ExactOrNull, ExactOrAllNull, notExactSame, and Fuzzy
 
 
 
