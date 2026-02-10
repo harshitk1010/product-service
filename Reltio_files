@@ -197,7 +197,6 @@ Reltio Data Sharing with Databricks allows you to securely access AI-ready and t
     Document lineage: Source files can be stored and deep-linked within profiles when needed, supporting both regulatory and operational traceability.
     Batch or real-time processing: Run document processing on a schedule or trigger it on demand.
 
-
 5.Address Auto Complete
 Address Auto Complete captures clean, standardized addresses at source. This API capability improves data quality at the point of entry by providing type-ahead address suggestions and returning complete, standardized addresses.
 
