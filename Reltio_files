@@ -756,7 +756,7 @@ www.linkedin.com/in/harshit-kumar-rajput-516b3b242
 ======
 1.Import and export data from reltio
 2.configuration of match and merge rule. (Write configuration)
-3. Token vs concoctor class diff in match and merge rule
+3. Token vs comparator class diff in match and merge rule
 4. Custom workflow how to create
 5. Size of file upload in relate
 6. How many way we can upload data
@@ -765,6 +765,8 @@ www.linkedin.com/in/harshit-kumar-rajput-516b3b242
 9.  Fuzzy and NOtNull
 10. Data load all scenario
 11. Data modelling
+12. export the data fromm reltio
+13.
 =======
 
 
