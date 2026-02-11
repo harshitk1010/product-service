@@ -860,9 +860,66 @@ aoS?f6B@VYP
 11. Data modelling
 12. export the data fromm reltio
 =======
+reltio architecture--
 
+Source Systems
+   ↓
+Integration Layer (APIs / Streaming / Batch)
+   ↓
+Reltio Platform
+   - Data Model
+   - Matching Engine
+   - Survivorship
+   - Workflows
+   ↓
+Golden Record Creation
+   ↓
+Consumption (CRM, ERP, BI, APIs)
 
+====
 
+Bulk load of 10 million records is slow. How do you optimize?
+Answer Approach:
+Disable real-time events during load
+Use batch mode instead of API
+Tune match rules (avoid heavy fuzzy logic)
+Reduce unnecessary survivorship rules
+Load in partitions
+Monitor entity graph size
+---------
+Business reports that unrelated customers are getting auto-merged. What would you do?
+
+Answer Approach:
+
+Review match rule logic
+Are you using only name + DOB?
+Missing unique identifiers?
+Reduce auto-merge threshold
+Move high-risk rule to suspect-only
+Add additional discriminating attributes (Email, Phone, SSN)
+Enable manual review workflow
+
+-------
+Golden record is showing old email instead of the latest one. Why?
+
+Check survivorship strategy:
+Source ranking?
+Recency-based?
+Crosswalk-specific survivorship?
+Attribute-level survivorship configured?
+----
+Source system updated phone number, but Golden Record not updating. Why?
+
+Possible Causes:
+
+Crosswalk overwrite flag disabled
+
+compareByCrosswalk = true
+
+Attribute not marked as updatable
+
+Survivorship rule blocking change
+===
 
 
 
