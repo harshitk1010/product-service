@@ -252,13 +252,7 @@ Fallback Strategies  -3 fallback crietria
 2.ZERO_OR_MORE_THAN_ONE
 3.ZERO
 
-
 match and merge rule
-
-
-
-
-
 
 ====
 Reltio data can be exported using Export Service for bulk, APIs for real-time, Integration Hub for downstream systems, and Streaming for event-based consumption.
@@ -292,8 +286,6 @@ best practices, and frameworks
 • Technical curiosity and desire to innovate
 
 ====
-
-
 * Proficiency in configuring: 
 * Data models (L3)
 * Match/Merge rules
@@ -504,11 +496,7 @@ CLEANSER USED
 TYPE OF MATCH RULE
 RIH
 
-
-
 Scenario based questions idha lam 
-
-
 
 Match rule 
 https://docs.reltio.com/en/integrate/reltio-data-enrichment-integrations/reltio-enrichment-with-npi/match-rules
@@ -539,10 +527,7 @@ These attribute types enable you to:
 * Provide detailed data to content and interaction designers.
 * Offer business users rich and streamlined, search and navigation experiences.
 
-
-
 Lca lambda 
-
 
 Dtss sfdc 
 
@@ -571,8 +556,6 @@ Interview question-
 2.how entire application deployed and work
 
 3.how mockito work
-
-4.
 ======
 Common Rules
 Survivorship calculation rules include:
@@ -594,8 +577,6 @@ Reltio interview questions:-
 ===
 1.Type of survivorship rule
 2.type of match rule
-
-
 3.type of loading - manual / automate loading
 
 Manual Methods:
@@ -766,7 +747,6 @@ www.linkedin.com/in/harshit-kumar-rajput-516b3b242
 10. Data load all scenario
 11. Data modelling
 12. export the data fromm reltio
-13.
 =======
 
 
