@@ -300,6 +300,8 @@ equals , ne , lt , lte , gt , gte , missing , exists
 match and merge rule-
 https://docs.reltio.com/en/reltio/what-does-reltio-do/what-reltio-does-at-a-glance/data-unification-and-mdm-at-a-glance/data-unification-and-mdm-in-detail/reltio-match-and-merge/fundamental-concepts-related-to-matching
 https://docs.reltio.com/en/reltio/what-does-reltio-do/what-reltio-does-at-a-glance/data-unification-and-mdm-at-a-glance/data-unification-and-mdm-in-detail/reltio-match-and-merge
+https://docs.reltio.com/en/applications/console/configuration-applications/data-modeler-at-a-glance/creating-a-new-match-rule
+
 
 Matching is also used within the Reltio data tenant subscription service (DTSS) to match profiles stored within a data tenant to those within your tenant.
 The three-step sequence of cleanse, match, and merge all occur in real-time
@@ -331,9 +333,35 @@ Data Modeler application to manage Entity types, Relationships, Analyze Match Ru
 
 ====================================
 Data Governance & Stewardship
+  Stewardship -  establishing policies and procedures for the management of data, and ensuring that data is used in a responsible and ethical manner
+ including data quality management, data security and privacy, data governance, data integration, and data analytics..
+ Data stewards are responsible for ensuring that data is managed effectively throughout its lifecycle, from creation or acquisition to retirement.
+
+Defining data policies and procedures--
+Ensuring compliance with regulatory requirements
+Managing data quality and consistency
+Facilitating data integration and sharing
+Managing data security and privacy
+Providing training and support to users of data
+Monitoring and auditing data usage and access
+
+type of data steward-
+Business data stewards:
+Technical data stewards:
+Data quality stewards: 
+Metadata stewards:
+
+Data Governance - managing the overall policies, procedures, and standards for data management within an organization.
+Data governance typically involves a cross-functional team of individuals, including data stewards, data architects, IT professionals, and business leaders.
+
+data stewards focus on managing specific data sets or data domains, data governance encompasses a broader set of responsibilities for managing an organization’s overall data assets.
+====
+large language models (LLMs) for Entity Resolution called FERN..
+Reltio Intelligent Assistant (RIA) to dramatically increase match accuracy, data steward productivity...
 
 
-
+RIH===
+Reltio Integration Hub (RIH) is a data integration service offering over 1,000 prebuilt connectors and the ability to create custom integrations using a low-code/no-code platform.
 
 
 ====Why Organizations Choose Reltio
