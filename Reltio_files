@@ -233,26 +233,115 @@ Match Token = “Who should I compare?”
 Comparator = “How similar are these two values?”
 
 ===========
-surviviorship rules
+https://docs.reltio.com/en/objectives/resolve-potential-matches/potential-matching-at-a-glance/potential-matching-navigation/design-survivorship-rules/survivorship-rules
+surviviorship rules---
+survivorship strategy or operational value (OV) rules, define a way to govern which attribute values must be identified as the OV.
+This article explains the survivorship rules for defining the operational values of your object types.
+These 'best values' are called the Operational Values, or winner values, and referred to as the OV of the attribute.
+
+Each attribute can have 0, 1, or multiple values that have been marked as OV. The OV flag is a boolean property used by the Hub to determine which attribute values must be shown to the user.
+The OV flag of each attribute value is calculated just-in-time whenever the entity's values are requested by either the Hub or a calling application.
+Survivorship rules can be configured via the Hub or via the Configuration API.
+
+Survivorship rules can be set for simple, nested, sub-nested, and referenced attributes. However, survivorship rules cannot be set for sub attributes of referenced attributes because survivorship rules for sub attributes are taken from the referenced entity/relation and can't be overridden on the sub attribute level.
+if an address attribute has sub attributes such as AddressLine1, AddressLine2, and City, the survivorship rules for these sub attributes will be determined by the survivorship rules that are set for the Location entity.
+
+
+
 strategy name 
 LUD  Last Update Date. Attributes that were recently updated (with the maximum number of update dates) will have highest priority to be marked as OV. LUD is the default survivorship strategy.
+LUD is the default survivorship strategy.
 
 SRC_SYS 	Source System. The user provides a priority list of sources. A list of priority is defined for a mapping, if it’s absent, it is taken from the priority list of the group. All crosswalks from a source system with the highest priority become winners
+ All crosswalks from a source system with the highest priority become winners, all values of those crosswalks also become winners.
+
 
 Frequency Calculate amounts of crosswalks from which values were provided. Values with the most amount of crosswalks become winners.
+
 Aggregation All presented values become winners (ov = True).
+
 MinValue The smallest value becomes the winner. All crosswalks of those values become winners.
+
 MaxValue Values with the highest value become winners. All crosswalks of those values become winners.
+
 ValueBasedPriority - A user-defined priority list of attribute values determines the Operational Value (OV). The value with the highest priority becomes the winner. All crosswalks associated with this value are also marked as winners. 
     lookupCode
     lookupValue
     lookupRawValue
+
 Fallback Strategies  -3 fallback crietria
 1.MORE_THAN_ONE
+If a strategy returns two or more winner values, its fallback strategy will use only the winner values and winner crosswalks from the strategy.
 2.ZERO_OR_MORE_THAN_ONE
-3.ZERO
+If there are zero winners, then all values from the strategy are considered by its fallback strategy. If there are two or more winners, then only winner values and winner crosswalks from the strategy are considered by its fallback strategy.
+3.ZERO The ZERO option triggers fallback only when no winners exist in the primary survivorship step
 
-match and merge rule
+You can use ignoreCase in the following survivorship strategies:
+
+MinValue
+MaxValue
+Frequency
+ValueBasedPriority
+By default, ignoreCase is set to false. This preserves case-sensitive behavior for backward compatibility.
+
+Survivorship calculation rules include:
+
+Survivorship strategy: Applies specific rules to determine winner values.
+Filtering settings: Splits all attribute values by defined criteria. Each split set of values has its own winner values
+Fallback strategy settings: Indicates what strategy must be used to determine the winner if a main survivorship strategy couldn’t determine them or found a lot of them.
+Ignored value: Ignored values do not participate in OV calculation.
+Crosswalks with end date (delete date): Do not participate in OV calculation just as those crosswalks do not exist.
+Default strategy: If an attribute does not have its own survivorship mapping, the default survivorship Last Update Date (LUD) is applied.
+
+Filtering-
+equals , ne , lt , lte , gt , gte , missing , exists
+
+=======
+match and merge rule-
+https://docs.reltio.com/en/reltio/what-does-reltio-do/what-reltio-does-at-a-glance/data-unification-and-mdm-at-a-glance/data-unification-and-mdm-in-detail/reltio-match-and-merge/fundamental-concepts-related-to-matching
+https://docs.reltio.com/en/reltio/what-does-reltio-do/what-reltio-does-at-a-glance/data-unification-and-mdm-at-a-glance/data-unification-and-mdm-in-detail/reltio-match-and-merge
+
+Matching is also used within the Reltio data tenant subscription service (DTSS) to match profiles stored within a data tenant to those within your tenant.
+The three-step sequence of cleanse, match, and merge all occur in real-time
+This behavior makes the Reltio platform ideal for real-time operational use within your data systems.
+
+Match rules: Create entities, assign IDs, and then merge them using match rules in the Console Data Modeler (recommended method).
+Match rules in the Data Modeler determine how to merge two or more entities and then combine them to build a consolidated profile. Reltio creates unique URIs for each entity before merging them. This enables you to unmerge them later if necessary.
+
+Reltio enables you to merge profiles into a single, comprehensive record. Using match rules, Reltio intelligently determines which profiles to merge and which to exclude. When configuring match rules, you can specify, for example, whether the system should apply exact or fuzzy matching..
+
+purpose- names, addresses, and emails through configurable conditions and thresholds, match rules identify potential duplicates and automatically consolidate them. This process ensures that your data remains accurate and consistent across systems, giving you cleaner, more reliable insights.
+
+profiling the data,
+selecting relevant attributes,
+addressing data quality issues, and
+balancing exact and fuzzy matching.
+
+The matching functionality compares and merges duplicate records to ensure data validity.
+ DTSS(Data Tenant Subscription Service) uses rules that are held in the Data Tenant’s configuration. If your tenant subscribes to a Reltio Data Tenant, your DTSS subscription may modify the behavior of the Data Tenant’s match rules but not significantly.
+
+Data Modeler--
+Define entity types and attributes
+Define relationships
+Managing Sources
+Analyze match strategy
+Match Rule Editor
+
+Data Modeler application to manage Entity types, Relationships, Analyze Match Rules and view the Sources of your data tenant, you can Import Configuration and/or Download Configuration too.
+
+====================================
+Data Governance & Stewardship
+
+
+
+
+
+====Why Organizations Choose Reltio
+Faster implementation compared to traditional MDM
+Real-time 360 customer view
+Strong AI-driven matching
+Cloud-native scalability
+Strong governance and compliance capabilities
 
 ====
 Reltio data can be exported using Export Service for bulk, APIs for real-time, Integration Hub for downstream systems, and Streaming for event-based consumption.
@@ -324,7 +413,6 @@ Interview Question:
 1.Survivorship
 
 2.MatchRule..
-
 
 1. Data profiling.
 
@@ -727,12 +815,8 @@ Mindset - ghiaiate ho then what your action
 ====
 MAIN FOUCS - DATA LOADING , MAPPPING  SURVIVIORS SHIPPS , MAATHCH RULLE..
 
-
 35438435
 aoS?f6B@VYP
-
-==
-www.linkedin.com/in/harshit-kumar-rajput-516b3b242
 
 ======
 1.Import and export data from reltio
