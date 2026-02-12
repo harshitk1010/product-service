@@ -919,7 +919,36 @@ compareByCrosswalk = true
 Attribute not marked as updatable
 
 Survivorship rule blocking change
-===
+===========
+
+Downstream systems supported
+CRM, data lakes, BI tools, and reporting platforms.
+
+Onboarding poor-quality HCP data
+Profile the data, apply cleansing rules, configure match logic, and involve stewards.
+
+Reltio is a cloud-native, API-first MDM platform that supports real-time data mastering and faster integration with modern architectures.
+
+How does match & merge work in Reltio?
+Match rules compare key attributes using exact and fuzzy logic, and merge rules consolidate duplicates into a golden record.
+
+How do you reduce false matches?
+By tuning thresholds, using multiple match rules, and prioritizing strong identifiers like NPI.
+
+What is survivorship?
+Survivorship determines which source or attribute value wins in the golden record based on trust, recency, or completeness.
+
+How do you integrate Reltio with CRM?
+Golden records are published via APIs or batch exports to CRM systems like Veeva or Salesforce.
+
+How do you handle integration failures?
+Through logging, retries, alerting, and dead-letter handling.
+
+HCP master data represents healthcare professionals with unique identifiers, credentials, and affiliations.
+
+What is product master data?
+A standardized view of products, brands, and SKUs used consistently across systems.
+
 
 
 
