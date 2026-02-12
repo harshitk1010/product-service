@@ -1,3 +1,55 @@
 java 8 questions
 =======
 
+In this code, when you call Collections.sort(empList), Java internally uses the overridden compareTo method of the Employee class to compare objects and sort the list accordingly.
+The compareTo method compares the empId of the current Employee object (this) with the empId of the Employee object being compared to (e). It returns a negative integer, zero, or a positive integer if this is less than, equal to, or greater than e, respectively.
+
+Comparator interface is used to define custom comparison logic
+Comparator interface defines a single method called compare(Object o1, Object o2), which compares two objects and returns a negative integer, zero, or a positive integer depending on whether the first object is less than, equal to, or greater than the second object, respectively.
+
+Comparator instances can be passed to sorting methods like Collections.sort() or Arrays.sort() to sort objects based on the defined criteria.
+
+Java has two types of streams:
+
+Primitive Stream	Object Stream
+IntStream	Stream<Integer>
+LongStream	Stream<Long>
+DoubleStream	Stream<Double>
+
+Many collectors like groupingBy() work on object streams, not primitive streams.
+
+So we convert primitives → objects using boxed().
+
+Intermediate Operations: filter, map, sorted, etc., which return a new stream.
+Terminal Operations: collect, forEach, reduce, etc., which produce a result or side-effect.
+Parallel Processing: Streams can be converted to parallel streams for better performance in large datasets.
+
+Backward Compatibility: Default methods enable you to add new methods to existing interfaces without requiring all implementing classes to provide an implementation.
+
+Benefits of Method References
+Improved Readability:
+Reusability:
+Reduced Errors: 
+Elegant Code: 
+
+Benefits of the Optional Class
+Avoids NullPointerExceptions:
+Improves Code Readability:
+Reduces Boilerplate Code:
+
+Key Methods of the Optional Class
+ofNullable(value): Creates an Optional that can contain a value or be empty if the value is null.
+isPresent():
+orElse(value): Returns the value if present; otherwise, returns a default value.
+map(Function): Applies a function to the value if present and returns a new Optional.
+flatMap(Function): Similar to map, but avoids nesting of Optional.
+
+map()	flatMap()
+One-to-One	One-to-Many
+Returns Stream<T>	Returns flattened Stream<T>
+No nesting	Removes nesting
+
+map() transforms each element, while flatMap() transforms and flattens nested structures into a single stream.
+
+
+
