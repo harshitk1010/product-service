@@ -1,1 +1,18 @@
 
+ Our frontend apps run on browsers, and browsers don’t understand JSX. The only language browsers understand is JavaScript. Somehow, this JSX needs to be transformed into JavaScript first. It is done by a ReactJS compiler called Babel.
+
+It takes the JSX and calls the React.createElement() function. This createElement() function returns a JavaScript Object called React Element.
+
+React.createElement() is the fundamental function used by React to create elements (React Nodes). JSX is just a syntactic sugar for React.createElement().
+
+
+if you write this JSX:
+const jsx = <h1>Hello, React!</h1>;
+
+It is internally converted to:
+const element = React.createElement("h1", null, "Hello, React!");
+
+React.createElement(type, props, ...children)
+
+
+
