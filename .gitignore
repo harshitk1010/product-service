@@ -1,0 +1,70 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+.env
+!.env.example
+dist/
+build/
+*.egg-info/
+.eggs/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+
+# dbt
+data_platform/dbt/target/
+data_platform/dbt/dbt_packages/
+data_platform/dbt/logs/
+data_platform/dbt/profiles/profiles.yml
+
+# Spark
+spark-warehouse/
+derby.log
+metastore_db/
+
+# Docker
+*.tar
+
+# Kubernetes
+*.kubeconfig
+kubeconfig
+
+# Terraform
+infrastructure/terraform/.terraform/
+infrastructure/terraform/*.tfstate
+infrastructure/terraform/*.tfstate.backup
+infrastructure/terraform/*.tfvars
+!infrastructure/terraform/*.tfvars.example
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (paranoid)
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+service_account.json
+
+# Logs
+*.log
+logs/
+airflow-logs/
