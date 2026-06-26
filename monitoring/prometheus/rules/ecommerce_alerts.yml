@@ -1,0 +1,162 @@
+groups:
+  - name: ecommerce_pipeline_alerts
+    interval: 30s
+    rules:
+
+      # ── Kafka Consumer Lag ────────────────────────────────────────────────────
+      - alert: KafkaConsumerLagHigh
+        expr: |
+          sum by (topic, consumer_group) (
+            kafka_consumer_group_lag
+          ) > 50000
+        for: 5m
+        labels:
+          severity: warning
+          team: data-engineering
+        annotations:
+          summary: "Kafka consumer lag is high"
+          description: >
+            Consumer group {{ $labels.consumer_group }} is lagging
+            {{ $value }} messages on topic {{ $labels.topic }}.
+            Spark streaming may be falling behind.
+          runbook_url: "https://wiki.company.com/runbooks/kafka-lag"
+
+      - alert: KafkaConsumerLagCritical
+        expr: |
+          sum by (topic, consumer_group) (
+            kafka_consumer_group_lag
+          ) > 200000
+        for: 2m
+        labels:
+          severity: critical
+          team: data-engineering
+          pagerduty: "true"
+        annotations:
+          summary: "CRITICAL: Kafka consumer lag is extremely high"
+          description: >
+            Consumer lag {{ $value }} on {{ $labels.topic }}.
+            Data pipeline is significantly behind. Page on-call immediately.
+
+      # ── Event Production Rate ─────────────────────────────────────────────────
+      - alert: EventProductionDropped
+        expr: |
+          rate(kafka_events_produced_total[5m]) < 10
+        for: 10m
+        labels:
+          severity: warning
+          team: data-engineering
+        annotations:
+          summary: "Event production rate has dropped significantly"
+          description: >
+            Only {{ $value | humanize }} events/sec being produced.
+            Expected > 100/sec during business hours.
+            Event producer service may be down or experiencing issues.
+
+      # ── Spark Streaming ───────────────────────────────────────────────────────
+      - alert: SparkStreamingBatchDelay
+        expr: |
+          spark_streaming_lastBatchProcessingDelay_ms > 30000
+        for: 3m
+        labels:
+          severity: warning
+          team: data-engineering
+        annotations:
+          summary: "Spark Streaming batch processing is delayed"
+          description: >
+            Last batch took {{ $value | humanizeDuration }} to process.
+            Target is < 30 seconds. Check executor logs.
+
+      - alert: SparkStreamingJobDown
+        expr: |
+          up{job="spark"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          pagerduty: "true"
+        annotations:
+          summary: "Spark Streaming job is DOWN"
+          description: "Spark driver is unreachable. Real-time metrics have stopped."
+
+      # ── Data Freshness ────────────────────────────────────────────────────────
+      - alert: SnowflakeLoadDelay
+        expr: |
+          time() - snowflake_last_load_timestamp_seconds{table="order_events"} > 7200
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Snowflake ORDER_EVENTS table not refreshed in 2+ hours"
+          description: >
+            Last load was {{ $value | humanizeDuration }} ago.
+            Check Airflow DAG: ecommerce_analytics_pipeline.
+
+      # ── Failed Events / DLQ ───────────────────────────────────────────────────
+      - alert: DeadLetterQueueGrowing
+        expr: |
+          rate(kafka_events_failed_total[10m]) > 5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Dead Letter Queue receiving events"
+          description: >
+            {{ $value | humanize }} events/sec going to DLQ.
+            Check event schema validation and Kafka broker health.
+
+      # ── Infrastructure ────────────────────────────────────────────────────────
+      - alert: NodeMemoryHigh
+        expr: |
+          (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 0.90
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Node memory usage above 90%"
+          description: "Node {{ $labels.instance }} memory is {{ $value | humanizePercentage }}."
+
+      - alert: KafkaBrokerDown
+        expr: |
+          up{job="kafka"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          pagerduty: "true"
+        annotations:
+          summary: "Kafka broker is DOWN"
+          description: "Kafka broker {{ $labels.instance }} is unreachable."
+
+  - name: business_kpi_alerts
+    interval: 60s
+    rules:
+
+      # ── Revenue Anomaly ────────────────────────────────────────────────────────
+      - alert: RevenueDropAnomaly
+        expr: |
+          sum(rate(ecommerce_order_revenue_total[30m]))
+          < 0.5 * sum(rate(ecommerce_order_revenue_total[30m] offset 1d))
+        for: 15m
+        labels:
+          severity: warning
+          team: analytics
+        annotations:
+          summary: "Revenue rate is 50%+ below yesterday at same time"
+          description: >
+            Current 30min revenue rate is significantly below yesterday.
+            Could indicate payment processor issues or site problems.
+
+      # ── Conversion Rate Drop ──────────────────────────────────────────────────
+      - alert: ConversionRateDrop
+        expr: |
+          (
+            sum(rate(ecommerce_orders_total[1h]))
+            / sum(rate(ecommerce_sessions_total[1h]))
+          ) < 0.01
+        for: 20m
+        labels:
+          severity: warning
+          team: product
+        annotations:
+          summary: "Conversion rate dropped below 1%"
+          description: >
+            Conversion rate is {{ $value | humanizePercentage }}.
+            Normal range is 2-4%. Possible checkout or UX issue.

@@ -1,0 +1,54 @@
+name: 'ecommerce_analytics'
+version: '1.0.0'
+config-version: 2
+
+profile: 'ecommerce_analytics'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  ecommerce_analytics:
+    staging:
+      +materialized: view
+      +schema: staging
+      +tags: ['staging']
+    intermediate:
+      +materialized: ephemeral
+      +schema: intermediate
+      +tags: ['intermediate']
+    marts:
+      +materialized: table
+      +schema: marts
+      +tags: ['marts']
+      dimensions:
+        +materialized: table
+        +post-hook: "GRANT SELECT ON {{ this }} TO ROLE ANALYST_ROLE"
+      facts:
+        +materialized: incremental
+        +unique_key: ['{{ this.name }}_sk']
+        +incremental_strategy: merge
+        +post-hook: "GRANT SELECT ON {{ this }} TO ROLE ANALYST_ROLE"
+      reporting:
+        +materialized: table
+        +schema: reporting
+        +post-hook: "GRANT SELECT ON {{ this }} TO ROLE REPORTING_ROLE"
+
+vars:
+  execution_date: '{{ run_started_at.strftime("%Y-%m-%d") }}'
+  lookback_days: 30
+  min_session_gap_minutes: 30
+
+# Global configs
+on-run-start:
+  - "USE WAREHOUSE ANALYTICS_TRANSFORM_WH"
+
+on-run-end:
+  - "ALTER WAREHOUSE ANALYTICS_TRANSFORM_WH SUSPEND"

@@ -1,0 +1,42 @@
+ecommerce_analytics:
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ANALYTICS_TRANSFORM_ROLE
+      warehouse: ANALYTICS_TRANSFORM_WH
+      database: ANALYTICS_DB
+      schema: STAGING
+      threads: 4
+      keepalives_idle: 0
+      connect_retries: 3
+
+    prod:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role: ANALYTICS_TRANSFORM_ROLE
+      warehouse: ANALYTICS_TRANSFORM_WH
+      database: ANALYTICS_DB
+      schema: STAGING
+      threads: 8
+      keepalives_idle: 0
+      connect_retries: 3
+      client_session_keep_alive: true
+
+    ci:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_CI_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_CI_PASSWORD') }}"
+      role: CI_ROLE
+      warehouse: CI_WH
+      database: CI_DB
+      schema: STAGING
+      threads: 4
+      connect_retries: 2
+
+  target: dev

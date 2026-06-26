@@ -1,0 +1,32 @@
+apiVersion: v2
+name: ecommerce-analytics
+description: Real-Time E-Commerce Analytics Platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+
+dependencies:
+  - name: kafka
+    version: "26.x.x"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: kafka.enabled
+  - name: spark
+    version: "8.x.x"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: spark.enabled
+  - name: airflow
+    version: "8.x.x"
+    repository: "https://airflow.apache.org"
+    condition: airflow.enabled
+  - name: postgresql
+    version: "13.x.x"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: postgresql.enabled
+  - name: prometheus
+    version: "25.x.x"
+    repository: "https://prometheus-community.github.io/helm-charts"
+    condition: prometheus.enabled
+  - name: grafana
+    version: "7.x.x"
+    repository: "https://grafana.github.io/helm-charts"
+    condition: grafana.enabled

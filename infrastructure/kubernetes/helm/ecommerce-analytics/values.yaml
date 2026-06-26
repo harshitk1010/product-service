@@ -1,0 +1,177 @@
+# =============================================================================
+# Production Helm Values — E-Commerce Analytics Platform
+# =============================================================================
+
+global:
+  environment: production
+  imageRegistry: "your-ecr-account.dkr.ecr.us-east-1.amazonaws.com"
+  imagePullSecrets:
+    - name: ecr-registry-secret
+
+# ── Event Producer ────────────────────────────────────────────────────────────
+eventProducer:
+  image:
+    repository: ecommerce/event-producer
+    tag: "latest"
+    pullPolicy: Always
+  replicaCount: 3
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "512Mi"
+    limits:
+      cpu: "2000m"
+      memory: "1Gi"
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 20
+    targetCPUUtilizationPercentage: 70
+    targetMemoryUtilizationPercentage: 80
+  service:
+    type: ClusterIP
+    port: 8000
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      nginx.ingress.kubernetes.io/rate-limit: "1000"
+    hosts:
+      - host: events-api.company.com
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: events-api-tls
+        hosts: [events-api.company.com]
+  podDisruptionBudget:
+    enabled: true
+    minAvailable: 2
+  affinity:
+    podAntiAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+        - weight: 100
+          podAffinityTerm:
+            topologyKey: kubernetes.io/hostname
+
+# ── Kafka ─────────────────────────────────────────────────────────────────────
+kafka:
+  enabled: true
+  replicaCount: 3
+  persistence:
+    enabled: true
+    size: 500Gi
+    storageClass: gp3
+  resources:
+    requests:
+      cpu: "2000m"
+      memory: "4Gi"
+    limits:
+      cpu: "4000m"
+      memory: "8Gi"
+  metrics:
+    kafka:
+      enabled: true
+    jmx:
+      enabled: true
+  zookeeper:
+    replicaCount: 3
+
+# ── Spark ─────────────────────────────────────────────────────────────────────
+spark:
+  enabled: true
+  master:
+    resources:
+      requests:
+        cpu: "2000m"
+        memory: "4Gi"
+      limits:
+        cpu: "4000m"
+        memory: "8Gi"
+  worker:
+    replicaCount: 4
+    resources:
+      requests:
+        cpu: "4000m"
+        memory: "8Gi"
+      limits:
+        cpu: "8000m"
+        memory: "16Gi"
+    autoscaling:
+      enabled: true
+      minReplicas: 2
+      maxReplicas: 10
+
+# ── Airflow ───────────────────────────────────────────────────────────────────
+airflow:
+  enabled: true
+  executor: KubernetesExecutor
+  scheduler:
+    replicas: 2
+    resources:
+      requests:
+        cpu: "1000m"
+        memory: "2Gi"
+  webserver:
+    replicas: 2
+    resources:
+      requests:
+        cpu: "500m"
+        memory: "1Gi"
+  workers:
+    replicas: 3
+    resources:
+      requests:
+        cpu: "2000m"
+        memory: "4Gi"
+
+# ── PostgreSQL ────────────────────────────────────────────────────────────────
+postgresql:
+  enabled: true
+  auth:
+    database: ecommerce_analytics
+    existingSecret: postgres-secret
+  primary:
+    persistence:
+      size: 100Gi
+      storageClass: gp3
+    resources:
+      requests:
+        cpu: "2000m"
+        memory: "4Gi"
+  readReplicas:
+    replicaCount: 2
+
+# ── Prometheus + Grafana ──────────────────────────────────────────────────────
+prometheus:
+  enabled: true
+  alertmanager:
+    enabled: true
+  server:
+    retention: 30d
+    persistentVolume:
+      size: 100Gi
+
+grafana:
+  enabled: true
+  adminPassword: ""  # Set via secret
+  persistence:
+    enabled: true
+    size: 10Gi
+  ingress:
+    enabled: true
+    hosts: [grafana.company.com]
+
+# ── Secrets (pulled from AWS Secrets Manager via External Secrets Operator) ───
+externalSecrets:
+  enabled: true
+  secretStoreRef:
+    name: aws-secrets-manager
+    kind: ClusterSecretStore
+  secrets:
+    - name: kafka-credentials
+      remoteRef: ecommerce/kafka/credentials
+    - name: snowflake-credentials
+      remoteRef: ecommerce/snowflake/credentials
+    - name: postgres-secret
+      remoteRef: ecommerce/postgres/credentials

@@ -1,0 +1,62 @@
+version: 2
+
+sources:
+  - name: raw_events
+    database: RAW_DB
+    schema: EVENTS
+    description: "Raw event tables loaded from S3 via Kafka → Spark → COPY INTO"
+    freshness:
+      warn_after: {count: 2, period: hour}
+      error_after: {count: 6, period: hour}
+    loaded_at_field: _loaded_at
+
+    tables:
+      - name: user_events
+        description: "User registration, login, logout events"
+        columns:
+          - name: event_id
+            description: "UUID — unique per event"
+            tests: [unique, not_null]
+          - name: user_id
+            tests: [not_null]
+          - name: event_type
+            tests:
+              - not_null
+              - accepted_values:
+                  values: ['user_registered', 'user_login', 'user_logout']
+          - name: timestamp
+            tests: [not_null]
+
+      - name: order_events
+        description: "Order lifecycle events"
+        columns:
+          - name: event_id
+            tests: [unique, not_null]
+          - name: order_id
+            tests: [not_null]
+          - name: total_amount
+            tests:
+              - not_null
+              - dbt_utils.accepted_range:
+                  min_value: 0
+                  max_value: 100000
+
+      - name: product_events
+        description: "Product view events"
+        columns:
+          - name: event_id
+            tests: [unique, not_null]
+          - name: product_id
+            tests: [not_null]
+
+      - name: search_events
+        description: "Search query events"
+        columns:
+          - name: event_id
+            tests: [unique, not_null]
+
+      - name: cart_events
+        description: "Cart add/remove events"
+        columns:
+          - name: event_id
+            tests: [unique, not_null]
